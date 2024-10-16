@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 
+import '../../../../configuration/styles.dart';
+
 class MarrqueeText extends StatefulWidget {
   final String text;
   const MarrqueeText({super.key, required this.text});
@@ -14,11 +16,11 @@ class MarrqueeTextState extends State<MarrqueeText> {
   Widget build(BuildContext context) {
     return Marquee(
       text: widget.text,
-      style: const TextStyle(fontSize: 20, color: Colors.black),
+      style: Styles.textStyle(17, Colors.black, FontWeight.bold),
       scrollAxis: Axis.horizontal,
       crossAxisAlignment: CrossAxisAlignment.start,
       blankSpace: 50,
-      // velocity: 100.0,
+      velocity: 100.0,
       pauseAfterRound: const Duration(seconds: 1),
       startPadding: 10,
       accelerationDuration: const Duration(seconds: 1),

@@ -40,7 +40,7 @@ class SearchScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppString.search,
+                      AppString().search,
                       style: Styles.textStyle(
                           18, AppColor.blackColor, FontWeight.bold),
                       textAlign: TextAlign.right,
@@ -51,13 +51,13 @@ class SearchScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           CustomTextField(
-                            label: Text(AppString.issue,
+                            label: Text(AppString().issue,
                                 style: Styles.textStyle(
                                     14, AppColor.blackColor, FontWeight.bold)),
                           ),
                           SizedBox(height: CustomSize.hSize(context) * 0.03),
                           CustomDropdownButtonFormField(
-                            label: Text(AppString.model,
+                            label: Text(AppString().model,
                                 style: Styles.textStyle(
                                     14, AppColor.blackColor, FontWeight.bold)),
                             // labelText: AppString.model,
@@ -74,7 +74,7 @@ class SearchScreen extends StatelessWidget {
                           ),
                           SizedBox(height: CustomSize.hSize(context) * 0.03),
                           CustomDropdownButtonFormField(
-                            label: Text(AppString.issueDec,
+                            label: Text(AppString().issueDec,
                                 style: Styles.textStyle(
                                     14, AppColor.blackColor, FontWeight.bold)),
                             // labelText: AppString.issueDec,
@@ -91,7 +91,7 @@ class SearchScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           CustomDropdownButtonFormField(
-                            label: Text(AppString.language,
+                            label: Text(AppString().language,
                                 style: Styles.textStyle(
                                     14, AppColor.blackColor, FontWeight.bold)),
                             // labelText: AppString.language,
@@ -113,7 +113,7 @@ class SearchScreen extends StatelessWidget {
                                 child: CustomOutlinedButton(
                                   onPressed: onCancel,
                                   child: Text(
-                                    AppString.cancel,
+                                    AppString().cancel,
                                     style: Styles.textStyle(14,
                                         AppColor.blackColor, FontWeight.bold),
                                   ),
@@ -123,7 +123,7 @@ class SearchScreen extends StatelessWidget {
                               Expanded(
                                 child: CustomElevetedButton(
                                   onPressed: () {},
-                                  child: Text(AppString.proceed,
+                                  child: Text(AppString().proceed,
                                       style: Styles.textStyle(
                                           14,
                                           AppColor.containerColor,

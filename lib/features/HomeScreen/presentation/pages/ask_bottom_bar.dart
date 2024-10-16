@@ -100,7 +100,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                           child: CustomTextField(
                             mcontroller: controller,
                             node: focusNode,
-                            text: AppString.title,
+                            text: AppString().title,
                             myOnTap: () {
                               BlocProvider.of<BottomBarCubit>(context)
                                   .toggleTextField(true);
@@ -173,7 +173,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              content: Text(AppString.dialogMessage,
+                              content: Text(AppString().dialogMessage,
                                   style: Styles.textStyle(12,
                                       AppColor.blackColor, FontWeight.bold)),
                               actions: [
@@ -190,7 +190,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text(AppString.noDialogMessage,
+                                      child: Text(AppString().noDialogMessage,
                                           style: Styles.textStyle(
                                               14,
                                               AppColor.containerColor,
@@ -205,7 +205,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text(AppString.yesDialogMessage,
+                                      child: Text(AppString().yesDialogMessage,
                                           style: Styles.textStyle(
                                               14,
                                               AppColor.containerColor,

@@ -66,8 +66,9 @@ class ChatScreen extends StatelessWidget {
               height: 27,
               width: CustomSize.wSize(context),
               color: Colors.white,
-              child: const MarrqueeText(
-                text: AppString.marqueeText,
+              child: MarrqueeText(
+                
+                text: AppString().marqueeText,
               ),
             ),
             Expanded(

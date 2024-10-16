@@ -1,20 +1,27 @@
 class AppString {
-  static const String title = "Message FarmX AI";
-  static const String dropDownmsg = "Please Select From below options:";
-  static const String buttonText = "Submit";
-  static const String cancel = "Cancel";
-  static const String proceed = "Proceed";
-  static const String search = "Search";
-  static const String language = "Language";
-  static const String issue = "Issue";
-  static const String model = "Model";
-  static const String issueDec = 'Issue Description';
-  static const String animatedWelcomeText = 'Welcome';
-  static const String animatedToText = 'To';
-  static const String animatedAskAIText = 'ASK AI';
-  static const String dialogMessage = 'Are you satisfied with this chat ?';
-  static const String yesDialogMessage = 'Yes';
-  static const String noDialogMessage = 'No';
-  static const String marqueeText =
+  AppString._internal();
+  static final AppString _instance = AppString._internal();
+  factory AppString() {
+    return _instance;
+  }
+  final String title = "Message FarmX AI";
+  final String dropDownmsg = "Please Select From below options:";
+  final String buttonText = "Submit";
+  final String cancel = "Cancel";
+  final String proceed = "Proceed";
+  final String search = "Search";
+  final String language = "Language";
+  final String issue = "Issue";
+  final String model = "Model";
+  final String issueDec = 'Issue Description';
+  final String animatedWelcomeText = 'Welcome';
+  final String searchHistory = "Search History";
+  final String clear = "Clear";
+  final String animatedToText = 'To';
+  final String animatedAskAIText = 'ASK AI';
+  final String dialogMessage = 'Are you satisfied with this chat ?';
+  final String yesDialogMessage = 'Yes';
+  final String noDialogMessage = 'No';
+  final String marqueeText =
       'Issue:     Model:      IssueDecription:      Language:';
 }

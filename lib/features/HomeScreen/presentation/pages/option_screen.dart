@@ -30,8 +30,8 @@ Future<void> showCustomDialog(
                           top: hSize * 0.03,
                           left: wSize * 0.04,
                         ),
-                        child: const Text(
-                          AppString.dropDownmsg,
+                        child:  Text(
+                          AppString().dropDownmsg,
                         ),
                       ),
                       Row(
@@ -71,7 +71,7 @@ Future<void> showCustomDialog(
                                   AppColor.buttonColor),
                             ),
                             onPressed: () {},
-                            child: const Text(AppString.buttonText),
+                            child: Text(AppString().buttonText),
                           ),
                         ],
                       ),

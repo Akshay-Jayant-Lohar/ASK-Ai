@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
               curve: Curves.easeInOut,
             )),
             child: Text(
-              AppString.animatedWelcomeText,
+              AppString().animatedWelcomeText,
               style: Styles.textStyle(
                   50, AppColor.containerColor, FontWeight.bold),
             ),
@@ -40,7 +40,7 @@ class SplashScreen extends StatelessWidget {
               curve: Curves.easeInOut,
             )),
             child: Text(
-              AppString.animatedToText,
+              AppString().animatedToText,
               style: Styles.textStyle(
                   40, AppColor.containerColor, FontWeight.bold),
             ),
@@ -55,7 +55,7 @@ class SplashScreen extends StatelessWidget {
               curve: Curves.easeInOut,
             )),
             child: Text(
-              AppString.animatedAskAIText,
+              AppString().animatedAskAIText,
               style: Styles.textStyle(
                   50, AppColor.containerColor, FontWeight.bold),
             ),

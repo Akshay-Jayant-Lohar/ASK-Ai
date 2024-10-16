@@ -13,6 +13,8 @@ class ImageResource {
   String chatLogo = 'assets/images/chat_ask_AI_logo.png';
   String micIconImage = 'assets/images/micImage.png';
   String appBarIconImage = 'assets/images/icon.png';
+  String arrowIcon = 'assets/images/arro_icon.svg';
+  String deleteIcon = 'assets/images/delete_icon.svg';
 }
 
 class AppIcon {
