@@ -4,6 +4,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../../../../configuration/size.dart';
 import '../../../../core/constants/color_resource.dart';
 import '../../../../core/constants/image_icon_resource.dart';
+import '../../../history_Screen/presentation/Pages/history_Scree.dart';
 
 class AskSpeedDial extends StatelessWidget {
   const AskSpeedDial({super.key});
@@ -20,6 +21,11 @@ class AskSpeedDial extends StatelessWidget {
           backgroundColor: AppColor.containerColor,
           children: [
             SpeedDialChild(
+              onTap: () => Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return const HistoryScreen();
+                },
+              )),
               child: UIconstants.icon.speedIcon1,
             ),
             SpeedDialChild(
