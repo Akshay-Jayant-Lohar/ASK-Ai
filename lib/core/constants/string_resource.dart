@@ -1,9 +1,13 @@
 class AppString {
+  
   AppString._internal();
+
   static final AppString _instance = AppString._internal();
+  
   factory AppString() {
     return _instance;
   }
+  
   final String title = "Message FarmX AI";
   final String dropDownmsg = "Please Select From below options:";
   final String buttonText = "Submit";

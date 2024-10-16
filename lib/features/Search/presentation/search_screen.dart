@@ -13,16 +13,16 @@ import '../../../core/common widgts/custom-container.dart';
 
 class SearchScreen extends StatelessWidget {
   final VoidCallback onCancel;
-
   const SearchScreen({super.key, required this.onCancel});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        // mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(
-            height: CustomSize.hSize(context) * 0.1,
+            height: CustomSize.hSize(context) * 0.23,
           ),
           Dialog(
             insetPadding: EdgeInsets.zero,
@@ -52,22 +52,23 @@ class SearchScreen extends StatelessWidget {
                         children: [
                           CustomTextField(
                             label: Text(AppString().issue,
-                                style: Styles.textStyle(
-                                    14, AppColor.blackColor, FontWeight.bold)),
+                                style: Styles.textStyle(14, AppColor.blackColor,
+                                    FontWeight.normal)),
                           ),
                           SizedBox(height: CustomSize.hSize(context) * 0.03),
                           CustomDropdownButtonFormField(
                             label: Text(AppString().model,
-                                style: Styles.textStyle(
-                                    14, AppColor.blackColor, FontWeight.bold)),
-                            // labelText: AppString.model,
+                                style: Styles.textStyle(14, AppColor.blackColor,
+                                    FontWeight.normal)),
                             items: DropDownData.models
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value,
-                                    style: Styles.textStyle(14,
-                                        AppColor.blackColor, FontWeight.bold)),
+                                    style: Styles.textStyle(
+                                        14,
+                                        AppColor.blackColor,
+                                        FontWeight.normal)),
                               );
                             }).toList(),
                             onChanged: (value) {},
@@ -75,33 +76,37 @@ class SearchScreen extends StatelessWidget {
                           SizedBox(height: CustomSize.hSize(context) * 0.03),
                           CustomDropdownButtonFormField(
                             label: Text(AppString().issueDec,
-                                style: Styles.textStyle(
-                                    14, AppColor.blackColor, FontWeight.bold)),
+                                style: Styles.textStyle(14, AppColor.blackColor,
+                                    FontWeight.normal)),
                             // labelText: AppString.issueDec,
                             items: DropDownData.issueDec
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value,
-                                    style: Styles.textStyle(14,
-                                        AppColor.blackColor, FontWeight.bold)),
+                                    style: Styles.textStyle(
+                                        14,
+                                        AppColor.blackColor,
+                                        FontWeight.normal)),
                               );
                             }).toList(),
                             onChanged: (value) {},
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: CustomSize.hSize(context) * 0.03),
                           CustomDropdownButtonFormField(
                             label: Text(AppString().language,
-                                style: Styles.textStyle(
-                                    14, AppColor.blackColor, FontWeight.bold)),
+                                style: Styles.textStyle(14, AppColor.blackColor,
+                                    FontWeight.normal)),
                             // labelText: AppString.language,
                             items: DropDownData.languages
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value,
-                                    style: Styles.textStyle(14,
-                                        AppColor.blackColor, FontWeight.bold)),
+                                    style: Styles.textStyle(
+                                        14,
+                                        AppColor.blackColor,
+                                        FontWeight.normal)),
                               );
                             }).toList(),
                             onChanged: (value) {},

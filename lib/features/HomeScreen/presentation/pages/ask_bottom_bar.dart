@@ -81,7 +81,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                 CustomAnimtaedContainer(
                   duration: const Duration(milliseconds: 300),
                   height: 50,
-                  width: isExpand ? CustomSize.wSize(context) * 0.9 : 230,
+                  width: isExpand ? CustomSize.wSize(context) * 0.9 : 220,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -48,4 +48,8 @@ class AppIcon {
     size: 20,
   );
   Icon dots = const Icon(Icons.more_vert);
+  Icon arrowIcon = const Icon(
+    Icons.arrow_back,
+    color: AppColor.containerColor,
+  );
 }

@@ -34,4 +34,5 @@ flutter:
   fonts:
     - family: Anek Devanagari
       fonts:
-        - asset: assets/fonts/AnekDevanagari_Expanded-ExtraLight.ttf
+        # - asset: assets/fonts/AnekDevanagari_Expanded-ExtraLight.ttf
+        - asset: assets/fonts/AnekDevanagari-Regular.ttf

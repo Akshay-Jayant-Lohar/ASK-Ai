@@ -13,12 +13,18 @@ class AskSpeedDial extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SpeedDial(
+          overlayOpacity: 0,
           overlayColor: AppColor.transparent,
           buttonSize: Size(CustomSize.hSize(context) * 0.02,
               CustomSize.wSize(context) * 0.13),
           foregroundColor: AppColor.blackColor,
           shape: Styles.customRoundedRectangleBorder(50),
           backgroundColor: AppColor.containerColor,
+          // elevation: 0.2,
+          // activeBackgroundColor: Colors.transparent,
+          // spacing: 10,
+          // spaceBetweenChildren: 6,
+          // childMargin: EdgeInsets.only(bottom: 100),
           children: [
             SpeedDialChild(
               onTap: () => Navigator.push(context, MaterialPageRoute(

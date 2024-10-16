@@ -17,7 +17,8 @@ class CustomTextField extends StatelessWidget {
     // this.onChanged,
     // this.enabledBorder,
     // this.disabledBorder,
-    this.labelText, this.label,
+    this.labelText,
+    this.label,
     // this.obscureText = false,
   }) : super(key: key);
 
@@ -26,13 +27,22 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       // onChanged: onChanged,
-
       // obscureText: obscureText,
       decoration: InputDecoration(
         labelText: labelText,
         label: label,
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black),
+        ),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black),
+        ),
+        // focusedBorder: OutlineInputBorder(
+        //   borderSide: BorderSide(
+        //       color: Colors.black87), // Dark black border when focused
+        // ),
         // hintText: hintText,
-        border: const OutlineInputBorder(),
+        // border: const OutlineInputBorder(),
         // enabledBorder: enabledBorder ?? InputBorder.none,
         // disabledBorder: disabledBorder ?? InputBorder.none,
       ),
