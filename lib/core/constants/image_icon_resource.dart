@@ -15,6 +15,10 @@ class ImageResource {
   String appBarIconImage = 'assets/images/icon.png';
   String arrowIcon = 'assets/images/arro_icon.svg';
   String deleteIcon = 'assets/images/delete_icon.svg';
+  String sendIcon =   "assets/images/send_icon.svg";
+  String addIcon = "assets/images/add_logo.svg";
+  String historyIcon = "assets/images/history_icon.svg";
+  String speakIcon = "assets/images/speak_rounded_icon.svg";
 }
 
 class AppIcon {
@@ -42,14 +46,10 @@ class AppIcon {
   Icon volumeIcon = Icon(Icons.volume_up_rounded, color: containerIconColor);
   Icon copyIcon = Icon(Icons.copy, size: 19, color: containerIconColor);
   Icon person = const Icon(Icons.person);
-  Icon add = Icon(
-    Icons.add_comment_sharp,
-    color: buttonIconColor,
-    size: 20,
-  );
   Icon dots = const Icon(Icons.more_vert);
   Icon arrowIcon = const Icon(
     Icons.arrow_back,
     color: AppColor.containerColor,
   );
+
 }

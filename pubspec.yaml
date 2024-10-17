@@ -32,7 +32,6 @@ flutter:
   assets:
     -  'assets/images/'
   fonts:
-    - family: Anek Devanagari
+    - family: Georama
       fonts:
-        # - asset: assets/fonts/AnekDevanagari_Expanded-ExtraLight.ttf
-        - asset: assets/fonts/AnekDevanagari-Regular.ttf
+        - asset: assets/fonts/Georama-Regular.ttf

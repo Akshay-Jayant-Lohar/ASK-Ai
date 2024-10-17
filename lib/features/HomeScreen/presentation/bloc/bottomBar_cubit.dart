@@ -5,9 +5,10 @@ import 'bottomBar_state.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class BottomBarCubit extends Cubit<BottomBarState> {
-  final stt.SpeechToText speech = stt.SpeechToText(); 
+  final stt.SpeechToText speech = stt.SpeechToText();
   Map<int, bool> isPlaying = {};
   final FlutterTts flutterTts = FlutterTts();
+
   BottomBarCubit() : super(SpeechInitial());
   bool isTextFieldExpanded = false;
   bool showAdditionalWidgets = true;
@@ -25,7 +26,6 @@ class BottomBarCubit extends Cubit<BottomBarState> {
       emit(const SpeechListening(recognizedText: ''));
       speech.listen(onResult: (val) {
         log("Recognized words: ${val.recognizedWords}");
-        // Emit the recognized words
         emit(SpeechListening(recognizedText: val.recognizedWords));
       });
     } else {
@@ -41,21 +41,22 @@ class BottomBarCubit extends Cubit<BottomBarState> {
   }
 
   void toggleTextField(bool isExpanded) {
-    //mit(TextFieldExpanded(isExpanded));
     isTextFieldExpanded = isExpanded;
     emit(TextFieldExpanded(isExpanded));
     if (!isExpanded) {
-      // When collapsing the text field, hide the additional widgets
       toggleAdditionalWidgets();
+      // Hide additional widgets when collapsing
+    } else {
+      showAdditionalWidgets = false; // Hide when expanding
     }
   }
 
   void clearTextField() {
-    emit(const TextFieldExpanded(false));
+    // emit(const TextFieldExpanded(false));
+    // toggleAdditionalWidgets();
   }
 
   Future<void> speak(String text, int index) async {
-    // Set the playing state for the specific message
     isPlaying[index] = true;
     emit(MessageSpeaking(index: index, isPlaying: true));
 
@@ -64,7 +65,6 @@ class BottomBarCubit extends Cubit<BottomBarState> {
     await flutterTts.setSpeechRate(0.4);
     await flutterTts.speak(text);
 
-    
     flutterTts.setCompletionHandler(() {
       isPlaying[index] = false;
       emit(MessageSpeaking(index: index, isPlaying: false));

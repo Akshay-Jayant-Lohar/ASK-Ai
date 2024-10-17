@@ -34,8 +34,6 @@ class AskBottomBar extends StatefulWidget {
 class _AskBottomBarState extends State<AskBottomBar> {
   TextEditingController controller = TextEditingController();
   FocusNode focusNode = FocusNode();
-  bool isExpand = false;
-  bool showAdditionalWidgets = true;
 
   @override
   void dispose() {
@@ -53,7 +51,6 @@ class _AskBottomBarState extends State<AskBottomBar> {
     return BlocConsumer<BottomBarCubit, BottomBarState>(
       listener: (context, state) {
         if (state is TextFieldExpanded) {
-          // isExpand = state.isExpanded;
           context.read<BottomBarCubit>().isTextFieldExpanded = state.isExpanded;
         }
       },
@@ -67,11 +64,8 @@ class _AskBottomBarState extends State<AskBottomBar> {
           controller.selection = TextSelection.fromPosition(
             TextPosition(offset: controller.text.length),
           );
-        }
-        if (micState is SpeechListening) {
           isListening = true;
         }
-
         return Column(
           children: [
             Row(
@@ -80,8 +74,10 @@ class _AskBottomBarState extends State<AskBottomBar> {
               children: [
                 CustomAnimtaedContainer(
                   duration: const Duration(milliseconds: 300),
-                  height: 50,
-                  width: isExpand ? CustomSize.wSize(context) * 0.9 : 220,
+                  height: CustomSize.hSize(context) * 0.065,
+                  width: isExpand
+                      ? CustomSize.wSize(context) * 0.9
+                      : CustomSize.wSize(context) * 0.65,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -136,7 +132,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                         CustomCircleAvatar(
                           backgroundColor: AppIcon.buttonIconColor,
                           child: CustomIconButton(
-                            icon: UIconstants.icon.sendIcon,
+                            icon: SvgPicture.asset(UIconstants.image.sendIcon),
                             onPressed: () {
                               if (controller.text.isNotEmpty) {
                                 BlocProvider.of<HomeCubit>(context)
@@ -167,7 +163,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                     radius: 23,
                     backgroundColor: AppColor.containerColor,
                     child: CustomIconButton(
-                      icon: UIconstants.icon.add,
+                      icon: SvgPicture.asset(UIconstants.image.addIcon),
                       onPressed: () {
                         showDialog(
                           context: context,

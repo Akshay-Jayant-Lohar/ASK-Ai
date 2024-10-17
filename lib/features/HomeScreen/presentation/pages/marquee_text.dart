@@ -16,7 +16,7 @@ class MarrqueeTextState extends State<MarrqueeText> {
   Widget build(BuildContext context) {
     return Marquee(
       text: widget.text,
-      style: Styles.textStyle(17, Colors.black, FontWeight.bold),
+      style: Styles.textStyle(17, Colors.black, FontWeight.normal),
       scrollAxis: Axis.horizontal,
       crossAxisAlignment: CrossAxisAlignment.start,
       blankSpace: 50,

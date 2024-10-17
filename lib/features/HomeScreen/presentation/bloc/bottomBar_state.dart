@@ -28,6 +28,7 @@ class SpeechError extends BottomBarState {
 }
 
 class SpeechStopped extends BottomBarState {}
+
 class MessageSpeaking extends BottomBarState {
   final int index;
   final bool isPlaying;
@@ -38,15 +39,20 @@ class MessageSpeaking extends BottomBarState {
   List<Object?> get props => [index, isPlaying];
 }
 
-// class SpeechPlaying extends BottomBarState {}
-
-// class SpeechPaused extends BottomBarState {}
-
 class TextFieldExpanded extends BottomBarState {
   final bool isExpanded;
-  const TextFieldExpanded(
-    this.isExpanded,
-  );
+
+  const TextFieldExpanded(this.isExpanded);
+
   @override
   List<Object?> get props => [isExpanded];
+}
+
+class AdditionalWidgetsToggled extends BottomBarState {
+  final bool showAdditionalWidgets;
+
+  const AdditionalWidgetsToggled(this.showAdditionalWidgets);
+
+  @override
+  List<Object?> get props => [showAdditionalWidgets];
 }

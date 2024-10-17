@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Styles {
   static TextStyle textStyle(double size, Color? color,  FontWeight? fontWeight) {
     return TextStyle(
-      fontFamily: 'Anek Devanagari',
+      fontFamily: 'Georama',
       fontSize: size,
       color: color,
       fontWeight: fontWeight

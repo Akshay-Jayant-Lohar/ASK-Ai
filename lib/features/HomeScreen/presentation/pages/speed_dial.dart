@@ -1,6 +1,7 @@
 import 'package:ask/configuration/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../../configuration/size.dart';
 import '../../../../core/constants/color_resource.dart';
 import '../../../../core/constants/image_icon_resource.dart';
@@ -32,10 +33,10 @@ class AskSpeedDial extends StatelessWidget {
                   return const HistoryScreen();
                 },
               )),
-              child: UIconstants.icon.speedIcon1,
+              child: SvgPicture.asset(UIconstants.image.historyIcon),
             ),
             SpeedDialChild(
-              child: UIconstants.icon.speedIcon2,
+              child: SvgPicture.asset(UIconstants.image.speakIcon),
             ),
           ],
           child: UIconstants.icon.dots),
