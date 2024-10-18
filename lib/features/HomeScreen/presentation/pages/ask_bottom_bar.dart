@@ -55,10 +55,9 @@ class _AskBottomBarState extends State<AskBottomBar> {
         }
       },
       builder: (context, micState) {
+        print("State is :$widget.state");
         bool isListening = false;
         bool isExpand = context.read<BottomBarCubit>().isTextFieldExpanded;
-        bool showAdditionalWidgets =
-            context.read<BottomBarCubit>().showAdditionalWidgets;
         if (micState is SpeechListening) {
           controller.text = micState.recognizedText;
           controller.selection = TextSelection.fromPosition(
@@ -66,33 +65,31 @@ class _AskBottomBarState extends State<AskBottomBar> {
           );
           isListening = true;
         }
+        if (widget.state is HomeUpdated) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Message sent successfully!')),
+          );
+        }
         return Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CustomAnimtaedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  height: CustomSize.hSize(context) * 0.065,
-                  width: isExpand
-                      ? CustomSize.wSize(context) * 0.9
-                      : CustomSize.wSize(context) * 0.65,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            context
-                                .read<BottomBarCubit>()
-                                .toggleTextField(!isExpand);
-                            if (isExpand) {
-                              context
-                                  .read<BottomBarCubit>()
-                                  .toggleAdditionalWidgets();
-                            }
-                          },
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: CustomAnimtaedContainer(
+                    duration: const Duration(seconds: 5),
+                    height: CustomSize.hSize(context) * 0.065,
+                    width: isExpand
+                        ? CustomSize.wSize(context) * 0.9
+                        : CustomSize.wSize(context) * 0.65,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
                           child: CustomTextField(
                             mcontroller: controller,
                             node: focusNode,
@@ -104,57 +101,68 @@ class _AskBottomBarState extends State<AskBottomBar> {
                             },
                           ),
                         ),
-                      ),
-                      CustomIconButton(
-                        icon: isListening
-                            ? UIconstants.icon.micListeningIcon
-                            : SvgPicture.asset(UIconstants.image.mic),
-                        onPressed: () {
-                          if (isListening) {
-                            BlocProvider.of<BottomBarCubit>(context)
-                                .stopListening();
-                          } else {
-                            BlocProvider.of<BottomBarCubit>(context)
-                                .startListening();
-                          }
-                        },
-                      ),
-                      if (isExpand) ...[
                         CustomIconButton(
-                          icon: UIconstants.icon.clearIcon,
+                          icon: isListening
+                              ? UIconstants.icon.micListeningIcon
+                              : SvgPicture.asset(UIconstants.image.mic),
                           onPressed: () {
-                            BlocProvider.of<BottomBarCubit>(context)
-                                .clearTextField();
-                            controller.clear();
-                            focusNode.unfocus();
+                            if (isListening) {
+                              BlocProvider.of<BottomBarCubit>(context)
+                                  .stopListening();
+                            } else {
+                              BlocProvider.of<BottomBarCubit>(context)
+                                  .startListening();
+                            }
                           },
                         ),
-                        CustomCircleAvatar(
-                          backgroundColor: AppIcon.buttonIconColor,
-                          child: CustomIconButton(
-                            icon: SvgPicture.asset(UIconstants.image.sendIcon),
+                        if (isExpand) ...[
+                          CustomIconButton(
+                            icon: UIconstants.icon.clearIcon,
                             onPressed: () {
-                              if (controller.text.isNotEmpty) {
-                                BlocProvider.of<HomeCubit>(context)
-                                    .addMessage(controller.text);
-                                BlocProvider.of<HomeCubit>(context).autoReply();
-                                controller.clear();
-                                focusNode.unfocus();
-                              }
+                              context
+                                  .read<BottomBarCubit>()
+                                  .toggleTextField(false);
+                              controller.clear();
+                              focusNode.unfocus();
                             },
                           ),
-                        ),
-                        SizedBox(
-                          width: CustomSize.wSize(context) * 0.01,
-                        ),
+                          CustomCircleAvatar(
+                            backgroundColor: AppIcon.buttonIconColor,
+                            child: CustomIconButton(
+                              icon:
+                                  SvgPicture.asset(UIconstants.image.sendIcon),
+                              onPressed: () {
+                                print("Send State is :$widget.state");
+                                if (controller.text.isNotEmpty) {
+                                  focusNode.unfocus();
+                                  BlocProvider.of<HomeCubit>(context)
+                                      .addMessage(controller.text);
+                                  // if (widget.state is HomeUpdated ) {
+                                  //   BlocProvider.of<HomeCubit>(context)
+                                  //       .addMessage(controller.text);
+                                  // } else {
+                                  //   // BlocProvider.of<HomeCubit>(context)
+                                  //   //     .addMessage(controller.text);
+                                  // }
+                                  // BlocProvider.of<HomeCubit>(context)
+                                  //     .autoReply();
+                                  controller.clear();
+                                }
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: CustomSize.wSize(context) * 0.01,
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
                 SizedBox(
                   width: CustomSize.wSize(context) * 0.02,
                 ),
-                if (showAdditionalWidgets) ...[
+                if (!isExpand) ...[
                   const AskSpeedDial(),
                   SizedBox(
                     width: CustomSize.wSize(context) * 0.02,
@@ -217,6 +225,9 @@ class _AskBottomBarState extends State<AskBottomBar> {
                     ),
                   ),
                 ],
+                const SizedBox(
+                  width: 10,
+                ),
               ],
             ),
             const SizedBox(height: 20),

@@ -1,5 +1,6 @@
 import 'package:ask/configuration/size.dart';
 import 'package:ask/configuration/styles.dart';
+import 'package:ask/core/common%20widgts/custom_icon_button.dart';
 import 'package:ask/core/constants/color_resource.dart';
 import 'package:ask/core/constants/string_resource.dart';
 import 'package:ask/features/history_Screen/data/custom_widget/custom_container.dart';
@@ -31,9 +32,14 @@ class HistoryScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  UIconstants.icon.arrowIcon,
+                  CustomIconButton(
+                    icon: UIconstants.icon.arrowIcon,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                   SizedBox(
-                    width: CustomSize.wSize(context) * 0.6,
+                    width: CustomSize.wSize(context) * 0.55,
                   ),
                   SizedBox(
                     height: CustomSize.hSize(context) * 0.07,
@@ -82,7 +88,7 @@ class HistoryScreen extends StatelessWidget {
                           Text(
                             ListData.data[index],
                             style: Styles.textStyle(
-                                12, Colors.black, FontWeight.normal),
+                                12, Colors.black, FontWeight.bold),
                           ),
                           SizedBox(width: CustomSize.wSize(context) * 0.5),
                           SvgPicture.asset(UIconstants.image.arrowIcon,
@@ -97,42 +103,6 @@ class HistoryScreen extends StatelessWidget {
                         ],
                       ),
                     );
-                    // return Card(
-                    //   margin: const EdgeInsets.only(bottom: 20),
-                    //   child: SizedBox(
-                    //     height: 50,
-                    //     child: Padding(
-                    //       padding: const EdgeInsets.all(0),
-                    //       child: ListTile(
-                    //         // contentPadding: EdgeInsets.zero,
-                    //         // titleAlignment: ,
-                    //         // titleAlignment: ,
-                    //         title: Text(
-                    //           ListData.data[index],
-                    //           style: Styles.textStyle(
-                    //               12, Colors.black, FontWeight.normal),
-                    //         ),
-                    //         trailing: Row(
-                    //           mainAxisSize: MainAxisSize.min,
-                    //           children: [
-                    //             SvgPicture.asset(
-                    //               UIconstants.image.arrowIcon,
-                    //               height: 13,
-                    //               width: 13,
-                    //             ),
-                    //             SizedBox(
-                    //                 width: CustomSize.wSize(context) * 0.02),
-                    //             SvgPicture.asset(
-                    //               UIconstants.image.deleteIcon,
-                    //               height: 13,
-                    //               width: 13,
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // );
                   },
                 ),
               ),
