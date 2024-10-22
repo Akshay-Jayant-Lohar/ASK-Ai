@@ -55,7 +55,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
         }
       },
       builder: (context, micState) {
-        print("State is :$widget.state");
+        // print("State is :$widget.state");
         bool isListening = false;
         bool isExpand = context.read<BottomBarCubit>().isTextFieldExpanded;
         if (micState is SpeechListening) {
