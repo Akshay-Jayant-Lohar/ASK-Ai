@@ -1,20 +1,17 @@
-class ModelClass {
-  final List<dynamic> historyTitle;
-  final int statusCode;
+class HistoryTitleModel {
+  final List<String> historyTitles;
 
-  ModelClass({ required this.historyTitle,required this.statusCode,});
+  HistoryTitleModel({required this.historyTitles});
 
-  // factory ModelClass.fromJson(Map<String, dynamic> json) {
-   factory ModelClass.fromJson(List<dynamic> json) {
-    // if (json.length != 2) {
-    //   throw Exception('Invalid JSON structure for ModelClass');
-    // }
-     final historyTitle = List<dynamic>.from(json[0]['History_title']);
-    final statusCode = json[1] as int;
-    return ModelClass(
-      // historyTitle: List<String>.from(json['History_title']),
-      historyTitle: historyTitle,
-      statusCode: statusCode
-    );
+  factory HistoryTitleModel.fromJson(Map<String, dynamic> json) {
+    // Check if 'History_title' is present and is a list
+    if (json['History_title'] is List) {
+      return HistoryTitleModel(
+        historyTitles: List<String>.from(json['History_title']),
+      );
+    } else {
+      // If the expected data is not found, return an empty list
+      return HistoryTitleModel(historyTitles: []);
+    }
   }
 }
