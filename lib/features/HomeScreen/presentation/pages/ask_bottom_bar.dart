@@ -6,12 +6,13 @@ import 'package:ask/features/HomeScreen/presentation/pages/speed_dial.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../configuration/styles.dart';
 import '../../../../core/common widgts/custom_animated_container.dart';
 import '../../../../core/common%20widgts/custom_textfield.dart';
 import '../../../../core/constants/image_icon_resource.dart';
 import '../../../../core/constants/string_resource.dart';
-import '../../data/feedback_api.dart';
+import 'confirmation_dialog.dart';
+import '../../data/repository/api_repository.dart';
+import '../../domain/usecase/make_api_call_usecase.dart';
 import '../bloc/home_cubit.dart';
 import '../bloc/home_state.dart';
 import '../bloc/bottomBar_cubit.dart';
@@ -45,6 +46,9 @@ class _AskBottomBarState extends State<AskBottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    final apiRepository = ApiRepositoryImpl();
+    final makeApiCallUseCase = MakeApiCallUseCase(apiRepository);
+
     if (widget.text != null && widget.text!.isNotEmpty) {
       controller.text = widget.text!;
     }
@@ -174,55 +178,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                     child: CustomIconButton(
                       icon: SvgPicture.asset(UIconstants.image.addIcon),
                       onPressed: () {
-                        // showDialog(
-                        //   context: context,
-                        //   builder: (BuildContext context) {
-                        //     return AlertDialog(
-                        //       content: Text(AppString().dialogMessage,
-                        //           style: Styles.textStyle(12,
-                        //               AppColor.blackColor, FontWeight.bold)),
-                        //       actions: [
-                        //         Row(
-                        //           mainAxisAlignment:
-                        //               MainAxisAlignment.spaceAround,
-                        //           children: [
-                        //             ElevatedButton(
-                        //               style: const ButtonStyle(
-                        //                 backgroundColor:
-                        //                     MaterialStatePropertyAll(
-                        //                         AppColor.buttonColor),
-                        //               ),
-                        //               onPressed: () {
-                        //                 Navigator.of(context).pop();
-                        //               },
-                        //               child: Text(AppString().noDialogMessage,
-                        //                   style: Styles.textStyle(
-                        //                       14,
-                        //                       AppColor.containerColor,
-                        //                       FontWeight.bold)),
-                        //             ),
-                        //             ElevatedButton(
-                        //               style: const ButtonStyle(
-                        //                 backgroundColor:
-                        //                     MaterialStatePropertyAll(
-                        //                         AppColor.buttonColor),
-                        //               ),
-                        //               onPressed: () {
-                        //                 Navigator.of(context).pop();
-                        //               },
-                        //               child: Text(AppString().yesDialogMessage,
-                        //                   style: Styles.textStyle(
-                        //                       14,
-                        //                       AppColor.containerColor,
-                        //                       FontWeight.bold)),
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ],
-                        //     );
-                        //   },
-                        // );
-                        showConfirmationDialog(context);
+                        showConfirmationDialog(context, makeApiCallUseCase);
                       },
                     ),
                   ),
