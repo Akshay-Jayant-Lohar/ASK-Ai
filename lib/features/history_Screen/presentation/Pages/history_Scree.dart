@@ -1,155 +1,3 @@
-// import 'package:ask/configuration/size.dart';
-// import 'package:ask/configuration/styles.dart';
-// import 'package:ask/core/common%20widgts/custom_icon_button.dart';
-// import 'package:ask/core/constants/color_resource.dart';
-// import 'package:ask/core/constants/string_resource.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
-// import '../../../../core/common widgts/custom-container.dart';
-// import '../../../../core/common widgts/custom_padding.dart';
-// import '../../../../core/constants/image_icon_resource.dart';
-// import '../../data/api/api.dart';
-
-// class HistoryScreen extends StatefulWidget {
-//   const HistoryScreen({super.key});
-
-//   @override
-//   State<HistoryScreen> createState() => _HistoryScreenState();
-// }
-
-// class _HistoryScreenState extends State<HistoryScreen> {
-
-//   @override
-//   void initState() {
-//     postHistoryTitle();
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         extendBodyBehindAppBar: true,
-//         body: Container(
-//             decoration: BoxDecoration(
-//               image: DecorationImage(
-//                 image: AssetImage(UIconstants.image.backgroundImage),
-//                 fit: BoxFit.cover,
-//               ),
-//             ),
-//             child: Padding(
-//                 padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-//                 child: Column(children: [
-//                   Row(
-//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                     children: [
-//                       CustomIconButton(
-//                         icon: UIconstants.icon.arrowIcon,
-//                         onPressed: () {
-//                           Navigator.pop(context);
-//                         },
-//                       ),
-//                       SizedBox(
-//                         height: CustomSize.hSize(context) * 0.07,
-//                         width: CustomSize.wSize(context) * 0.18,
-//                         child: CustomPadding(
-//                           padding: const EdgeInsets.all(3),
-//                           child: Image.asset(UIconstants.image.appBarIconImage),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                   Row(
-//                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                     children: [
-//                       Text(
-//                         AppString().searchHistory,
-//                         style:
-//                             Styles.textStyle(14, Colors.white, FontWeight.bold),
-//                       ),
-//                       SizedBox(
-//                         width: CustomSize.wSize(context) * 0.4,
-//                       ),
-//                       Text(
-//                         AppString().clear,
-//                         style:
-//                             Styles.textStyle(12, Colors.white, FontWeight.bold),
-//                       ),
-//                     ],
-//                   ),
-//                   // Expanded(
-//                   //   child: ListView.builder(
-//                   //     itemCount: 3,
-//                   //     padding: const EdgeInsets.only(top: 8),
-//                   //     itemBuilder: (context, index) {
-//                   //       return CustomContainer(
-//                   //         width: CustomSize.wSize(context) * 0.75,
-//                   //         margin: const EdgeInsets.all(10),
-//                   //         height: CustomSize.hSize(context) * 0.05,
-//                   //         decoration: Styles.customBoxDecoration(
-//                   //             AppColor.containerColor,
-//                   //             Styles.customBorderRadius(5)),
-//                   //         child: Padding(
-//                   //           padding: const EdgeInsets.all(8.0),
-//                   //           child: Row(
-//                   //             children: [
-//                   //               // SizedBox(width: CustomSize.wSize(context) * 0.02),
-//                   //               Text(
-//                   //                 ListData.data[index],
-//                   //                 style: Styles.textStyle(
-//                   //                     12, Colors.black, FontWeight.bold),
-//                   //               ),
-//                   //               SizedBox(width: CustomSize.wSize(context) * 0.48),
-//                   //               SvgPicture.asset(UIconstants.image.arrowIcon,
-//                   //                   height: CustomSize.hSize(context) * 0.023,
-//                   //                   width: CustomSize.wSize(context) * 0.1),
-//                   //               SizedBox(width: CustomSize.wSize(context) * 0.02),
-//                   //               SvgPicture.asset(UIconstants.image.deleteIcon,
-//                   //                   height: CustomSize.hSize(context) * 0.019,
-//                   //                   width: CustomSize.wSize(context) * 0.1),
-//                   //             ],
-//                   //           ),
-//                   //         ),
-//                   //       );
-//                   //     },
-//                   //   ),
-//                   // ),
-//                   Expanded(
-//                     child: ListView.builder(
-//                       itemCount: 3,
-//                       padding: const EdgeInsets.only(top: 8),
-//                       itemBuilder: (context, index) {
-//                         return CustomContainer(
-//                           width: CustomSize.wSize(context) * 0.75,
-//                           margin: const EdgeInsets.all(10),
-//                           height: CustomSize.hSize(context) * 0.05,
-//                           decoration: Styles.customBoxDecoration(
-//                               AppColor.containerColor,
-//                               Styles.customBorderRadius(5)),
-//                           child: Row(
-//                             children: [
-//                               SizedBox(width: CustomSize.wSize(context) * 0.02),
-//                               Text(
-//                                 'historyTitles[index]',
-//                                 style: Styles.textStyle(
-//                                     12, Colors.black, FontWeight.bold),
-//                               ),
-//                               SizedBox(width: CustomSize.wSize(context) * 0.4),
-//                               SvgPicture.asset(UIconstants.image.arrowIcon,
-//                                   height: CustomSize.hSize(context) * 0.023,
-//                                   width: CustomSize.wSize(context) * 0.1),
-//                               SizedBox(width: CustomSize.wSize(context) * 0.02),
-//                               SvgPicture.asset(UIconstants.image.deleteIcon,
-//                                   height: CustomSize.hSize(context) * 0.019,
-//                                   width: CustomSize.wSize(context) * 0.1),
-//                             ],
-//                           ),
-//                         );
-//                       },
-//                     ),
-//                   )
-//                 ]))));
-//   }
-// }
 import 'dart:convert';
 import 'package:ask/configuration/size.dart';
 import 'package:ask/configuration/styles.dart';
@@ -177,12 +25,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   void initState() {
     super.initState();
-    postHistoryTitle(); 
+    postHistoryTitle();
   }
 
   Future<void> postHistoryTitle() async {
     try {
-      // Fetch the token
       final tokenResponse = await http.post(
         Uri.parse('https://ai.mahindra.com/api/v1/department/askportal/token'),
         headers: {
@@ -200,7 +47,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
         final tokenData = jsonDecode(tokenResponse.body);
         final accessToken = tokenData['token'];
 
-        // Post history titles
         final historyResponse = await http.post(
           Uri.parse(
               'https://ai.mahindra.com/api/v1/department/askportal/blob/shirke.mithilesh/histlist'),
@@ -218,11 +64,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
         );
 
         if (historyResponse.statusCode == 200) {
-          // Print the raw response to check structure
           print('History Response: ${historyResponse.body}');
 
           setState(() {
-            // Safely parse the response
             _historyTitleModel =
                 HistoryTitleModel.fromJson(jsonDecode(historyResponse.body));
           });
