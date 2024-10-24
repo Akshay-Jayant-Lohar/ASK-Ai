@@ -1,4 +1,7 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
+import 'dart:developer';
 import 'package:ask/configuration/size.dart';
 import 'package:ask/configuration/styles.dart';
 import 'package:ask/core/common%20widgts/custom_icon_button.dart';
@@ -64,20 +67,20 @@ class _HistoryScreenState extends State<HistoryScreen> {
         );
 
         if (historyResponse.statusCode == 200) {
-          print('History Response: ${historyResponse.body}');
+          log('History Response: ${historyResponse.body}');
 
           setState(() {
             _historyTitleModel =
                 HistoryTitleModel.fromJson(jsonDecode(historyResponse.body));
           });
         } else {
-          print('Failed to post history: ${historyResponse.statusCode}');
+          log('Failed to post history: ${historyResponse.statusCode}');
         }
       } else {
-        print('Failed to fetch token: ${tokenResponse.statusCode}');
+        log('Failed to fetch token: ${tokenResponse.statusCode}');
       }
     } catch (error) {
-      print('Error occurred: $error');
+      log('Error occurred: $error');
     }
   }
 

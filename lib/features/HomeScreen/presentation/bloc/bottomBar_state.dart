@@ -48,6 +48,8 @@
 //   List<Object?> get props => [isExpanded];
 // }
 
+// ignore_for_file: file_names
+
 // class AdditionalWidgetsToggled extends BottomBarState {
 //   final bool showAdditionalWidgets;
 //   const AdditionalWidgetsToggled(this.showAdditionalWidgets);

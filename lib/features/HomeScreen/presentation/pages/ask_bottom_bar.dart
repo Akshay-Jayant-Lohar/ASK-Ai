@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ask/configuration/size.dart';
 import 'package:ask/core/common%20widgts/custom_circle_avtar.dart';
 import 'package:ask/core/common%20widgts/custom_icon_button.dart';
@@ -137,7 +139,7 @@ class _AskBottomBarState extends State<AskBottomBar> {
                               icon:
                                   SvgPicture.asset(UIconstants.image.sendIcon),
                               onPressed: () {
-                                print("Send State is :$widget.state");
+                                log("Send State is :$widget.state");
                                 if (controller.text.isNotEmpty) {
                                   focusNode.unfocus();
                                   BlocProvider.of<HomeCubit>(context)

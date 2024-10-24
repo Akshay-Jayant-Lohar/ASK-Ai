@@ -1,8 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 Future<void> postHistoryTitle() async {
-  
   final tokenResponse = await http.post(
     Uri.parse('https://ai.mahindra.com/api/v1/department/askportal/token'),
     headers: {
@@ -38,12 +38,12 @@ Future<void> postHistoryTitle() async {
     );
 
     if (historyResponse.statusCode == 200) {
-      print('History posted successfully');
+      
+      log('History posted successfully');
     } else {
-      print('Failed to post history: ${historyResponse.statusCode}');
+      log('Failed to post history: ${historyResponse.statusCode}');
     }
   } else {
-    print('Failed to fetch token: ${tokenResponse.statusCode}');
+    log('Failed to fetch token: ${tokenResponse.statusCode}');
   }
 }
-

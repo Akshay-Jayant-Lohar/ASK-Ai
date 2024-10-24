@@ -38,6 +38,8 @@
 //     emit(ChatScreenVisible(messages: state.messages, recognizedText: state.recognizedText));
 //   }
 // }
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ask/features/HomeScreen/presentation/bloc/home_state.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -49,7 +51,7 @@ class HomeCubit extends Cubit<HomeState> {
   // Adds a new message to the message list
   void addMessage(String message) {
     final updatedMessages = List<String>.from(state.messages)..add(message);
-    print("New message added: $updatedMessages");
+    log("New message added: $updatedMessages");
     emit(HomeUpdated(
       messages: updatedMessages,
       selectedValue: state.selectedValue,

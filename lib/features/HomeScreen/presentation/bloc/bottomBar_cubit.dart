@@ -77,6 +77,8 @@
 //     emit(MessageSpeaking(index: index, isPlaying: false));
 //   }
 
+// ignore_for_file: file_names
+
 //   void toggleAdditionalWidgets() {
 //     isTextFieldExpanded = !isTextFieldExpanded;
 //     // showAdditionalWidgets = !showAdditionalWidgets;

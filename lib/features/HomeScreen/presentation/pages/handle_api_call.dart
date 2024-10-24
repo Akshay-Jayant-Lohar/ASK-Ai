@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import '../../domain/usecase/make_api_call_usecase.dart';
 
@@ -35,6 +37,6 @@ Future<void> handleApiCall(
         ],
       ),
     );
-    print("Error: $e");
+    log("Error: $e");
   }
 }

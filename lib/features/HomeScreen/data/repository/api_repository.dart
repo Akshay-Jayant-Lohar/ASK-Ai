@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 
 abstract class ApiRepository {
@@ -8,7 +10,7 @@ class ApiRepositoryImpl implements ApiRepository {
   final String apiUrl =
       'https://ai.mahindra.com/api/v1/department/askportal/feedback';
   final String token =
-      "\$2a\$10\$3lt1eS9bvGDs.zyVfeeaFeki7Uv1SLrzBr4AqnuYK8.YpBqQfsn7m";
+      "\$2a\$10\$kz6CKb6Mg./BGXNmI8FnGu21GLdHDDx8xOnTUB9PD7REJPvA0ZNc2";
 
   @override
   Future<void> makeApiCall() async {
@@ -20,8 +22,8 @@ class ApiRepositoryImpl implements ApiRepository {
       },
       body: '{"done": true}',
     );
-    print("Response Status Code: ${response.statusCode}");
-    print("Response Body: ${response.body}");
+    log("Response Status Code: ${response.statusCode}");
+    log("Response Body: ${response.body}");
     if (response.statusCode != 200) {
       throw Exception("API call failed with status: ${response.statusCode}");
     }
