@@ -1,33 +1,34 @@
-import 'dart:developer';
-
+import 'package:ask/features/HomeScreen/data/data_source/api/dio_config.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ask/configuration/size.dart';
 import 'package:ask/core/common%20widgts/custom_circle_avtar.dart';
 import 'package:ask/core/common%20widgts/custom_icon_button.dart';
 import 'package:ask/core/constants/color_resource.dart';
 import 'package:ask/features/HomeScreen/presentation/pages/speed_dial.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import '../../../../core/common widgts/custom_animated_container.dart';
-import '../../../../core/common%20widgts/custom_textfield.dart';
-import '../../../../core/constants/image_icon_resource.dart';
-import '../../../../core/constants/string_resource.dart';
-import 'confirmation_dialog.dart';
-import '../../data/repository/api_repository.dart';
-import '../../domain/usecase/make_api_call_usecase.dart';
-import '../bloc/home_cubit.dart';
-import '../bloc/home_state.dart';
+import 'package:ask/core/common%20widgts/custom_animated_container.dart';
+import 'package:ask/core/common%20widgts/custom_textfield.dart';
+import 'package:ask/core/constants/image_icon_resource.dart';
+import 'package:ask/core/constants/string_resource.dart';
+import '../../data/data_source/api/api_service.dart';
 import '../bloc/bottomBar_cubit.dart';
 import '../bloc/bottomBar_state.dart';
+import 'confirmation_dialog.dart';
+import '../../data/repository/api_repository_impl.dart';
+import '../../domain/usecase/feedback_api_call_usecase.dart';
+import '../bloc/home_cubit.dart';
+import '../bloc/home_state.dart';
 
-// ignore: must_be_immutable
 class AskBottomBar extends StatefulWidget {
   final HomeState state;
-  String? text = '';
+  final String? text;
+  final ApiService? apiService;
 
-  AskBottomBar({
+  const AskBottomBar({
     super.key,
     required this.state,
+    this.apiService,
     this.text,
   });
 
@@ -36,8 +37,15 @@ class AskBottomBar extends StatefulWidget {
 }
 
 class _AskBottomBarState extends State<AskBottomBar> {
-  TextEditingController controller = TextEditingController();
-  FocusNode focusNode = FocusNode();
+  late final TextEditingController controller;
+  late final FocusNode focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController(text: widget.text);
+    focusNode = FocusNode();
+  }
 
   @override
   void dispose() {
@@ -48,44 +56,43 @@ class _AskBottomBarState extends State<AskBottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    final apiRepository = ApiRepositoryImpl();
-    final makeApiCallUseCase = MakeApiCallUseCase(apiRepository);
-
-    if (widget.text != null && widget.text!.isNotEmpty) {
-      controller.text = widget.text!;
-    }
+    final apiRepository = ApiRepositoryImpl(apiService);
+    final apiCallUseCase = ApiCallUseCase(apiRepository);
 
     return BlocConsumer<BottomBarCubit, BottomBarState>(
       listener: (context, state) {
         if (state is TextFieldExpanded) {
           context.read<BottomBarCubit>().isTextFieldExpanded = state.isExpanded;
         }
+        if (state is ApiCallLoading) {
+          // Show loading indicator
+        } else if (state is ApiCallSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Success: ${state.responseData}')),
+          );
+        } else if (state is ApiCallFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error: ${state.error}')),
+          );
+        }
       },
       builder: (context, micState) {
-        // print("State is :$widget.state");
-        bool isListening = false;
+        bool isListening = micState is SpeechListening;
         bool isExpand = context.read<BottomBarCubit>().isTextFieldExpanded;
-        if (micState is SpeechListening) {
-          controller.text = micState.recognizedText;
-          controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: controller.text.length),
-          );
-          isListening = true;
-        }
+
         if (widget.state is HomeUpdated) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Message sent successfully!')),
           );
         }
+
         return Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 Expanded(
                   child: CustomAnimtaedContainer(
                     duration: const Duration(seconds: 5),
@@ -139,58 +146,34 @@ class _AskBottomBarState extends State<AskBottomBar> {
                               icon:
                                   SvgPicture.asset(UIconstants.image.sendIcon),
                               onPressed: () {
-                                log("Send State is :$widget.state");
                                 if (controller.text.isNotEmpty) {
-                                  focusNode.unfocus();
                                   BlocProvider.of<HomeCubit>(context)
                                       .addMessage(controller.text);
-                                  // if (widget.state is HomeUpdated ) {
-                                  //   BlocProvider.of<HomeCubit>(context)
-                                  //       .addMessage(controller.text);
-                                  // } else {
-                                  //   // BlocProvider.of<HomeCubit>(context)
-                                  //   //     .addMessage(controller.text);
-                                  // }
-                                  // BlocProvider.of<HomeCubit>(context)
-                                  //     .autoReply();
                                   controller.clear();
                                 }
                               },
                             ),
-                          ),
-                          SizedBox(
-                            width: CustomSize.wSize(context) * 0.01,
                           ),
                         ],
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: CustomSize.wSize(context) * 0.02,
-                ),
                 if (!isExpand) ...[
                   const AskSpeedDial(),
-                  SizedBox(
-                    width: CustomSize.wSize(context) * 0.02,
-                  ),
                   CustomCircleAvatar(
                     radius: 23,
                     backgroundColor: AppColor.containerColor,
                     child: CustomIconButton(
                       icon: SvgPicture.asset(UIconstants.image.addIcon),
                       onPressed: () {
-                        showConfirmationDialog(context, makeApiCallUseCase);
+                        showConfirmationDialog(context, apiCallUseCase);
                       },
                     ),
                   ),
                 ],
-                const SizedBox(
-                  width: 10,
-                ),
               ],
             ),
-            const SizedBox(height: 20),
           ],
         );
       },

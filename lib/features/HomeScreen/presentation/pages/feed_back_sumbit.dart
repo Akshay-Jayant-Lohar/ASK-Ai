@@ -1,12 +1,11 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import '../../domain/usecase/make_api_call_usecase.dart';
+import '../../domain/usecase/feedback_api_call_usecase.dart';
 
-Future<void> handleApiCall(
-    BuildContext context, MakeApiCallUseCase apiCallUseCase) async {
+Future<void> feedBackSubmit(
+    BuildContext context, ApiCallUseCase apiCallUseCase) async {
   try {
-    await apiCallUseCase.execute();
+    // await apiCallUseCase.execute();// move to cubit
     // ignore: use_build_context_synchronously
     showDialog(
       context: context,

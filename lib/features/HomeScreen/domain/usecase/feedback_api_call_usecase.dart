@@ -1,9 +1,9 @@
-import '../../data/repository/api_repository.dart';
+import '../repository/api_repository_.dart';
 
-class MakeApiCallUseCase {
+class ApiCallUseCase {
   final ApiRepository repository;
 
-  MakeApiCallUseCase(this.repository);
+  ApiCallUseCase(this.repository);
 
   Future<void> execute() async {
     return await repository.makeApiCall();

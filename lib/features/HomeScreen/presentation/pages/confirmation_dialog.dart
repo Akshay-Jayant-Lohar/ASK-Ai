@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../../configuration/styles.dart';
 import '../../../../core/constants/color_resource.dart';
 import '../../../../core/constants/string_resource.dart';
-import '../../domain/usecase/make_api_call_usecase.dart';
-import 'handle_api_call.dart';
+import '../../domain/usecase/feedback_api_call_usecase.dart';
+import 'feed_back_sumbit.dart';
 
 void showConfirmationDialog(
-    BuildContext context, MakeApiCallUseCase apiCallUseCase) {
+    BuildContext context, ApiCallUseCase apiCallUseCase) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -35,12 +35,7 @@ void showConfirmationDialog(
                       MaterialStatePropertyAll(AppColor.buttonColor),
                 ),
                 onPressed: () async {
-                  // Navigator.of(context).pop();
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const HomeScreen()),
-                  // );
-                  await handleApiCall(context, apiCallUseCase);
+                  await feedBackSubmit(context, apiCallUseCase);
                 },
                 child: Text(AppString().yesDialogMessage,
                     style: Styles.textStyle(
@@ -53,5 +48,3 @@ void showConfirmationDialog(
     },
   );
 }
-
-
